@@ -87,7 +87,12 @@ async function run() {
     res.send(result);
   })
 
-
+ app.delete('/products/:id',async(req,res)=>{
+  const id = req.params.id;
+  const query={_id: new ObjectId(id)}
+  const result= await products.deleteOne(query)
+  res.send(result);
+ })
   // verify Admin
 
   app.post('/user',async(req,res)=>{
