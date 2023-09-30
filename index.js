@@ -154,6 +154,14 @@ async function run() {
   const result= await ConfromorderCallaction.find().toArray()
          res.send(result)
  })
+
+app.get("/storeOrder/:id",async(req,res)=>{
+  const id = req.params.id;
+  const query={_id: new ObjectId(id)}
+  const result= await ConfromorderCallaction.findOne(query)
+  res.send(result);
+})
+
  app.get('/chart',verifyJWT,verifyAdmin,async(req,res)=>{
   const result= await ConfromorderCallaction.find().toArray()
          res.send(result)
