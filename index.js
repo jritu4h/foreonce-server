@@ -76,7 +76,7 @@ async function run() {
     res.send(result)
    }) 
   app.get('/products',async(req,res)=>{
-    const result= await products.find().toArray()
+    const result= await products.find().sort({ price: -1 }).toArray()
     res.send(result)
   })
  
@@ -150,8 +150,8 @@ async function run() {
     res.send(result)
   })
 
- app.get('/storeOrder',verifyJWT,verifyAdmin,async(req,res)=>{
-  const result= await ConfromorderCallaction.find().toArray()
+ app.get('/storeOrder',async(req,res)=>{
+  const result= await ConfromorderCallaction.find().sort({ date: 1 }).toArray()
          res.send(result)
  })
 
@@ -174,7 +174,7 @@ app.get("/storeOrder/:id",async(req,res)=>{
  })
 
   app.get('/confromorder',verifyJWT,verifyAdmin,async(req,res)=>{
-         const result= await orderCallaction.find().toArray()
+         const result= await orderCallaction.find().sort({ date: 1 }).toArray()
          res.send(result)
   })
 /* status */
@@ -226,7 +226,7 @@ app.get("/status",verifyJWT,verifyAdmin,async(req,res)=>{
     }
     const query = { email: email };
 
-   const result= await orderCallaction.find(query).toArray()
+   const result= await orderCallaction.find(query).sort({ date: 1 }).toArray()
    res.send(result)
   })
   app.delete('/order/:id',async(req,res)=>{
