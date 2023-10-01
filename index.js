@@ -150,7 +150,7 @@ async function run() {
     res.send(result)
   })
 
- app.get('/storeOrder',async(req,res)=>{
+ app.get('/storeOrder',verifyJWT,verifyAdmin,async(req,res)=>{
   const result= await ConfromorderCallaction.find().sort({ date: 1 }).toArray()
          res.send(result)
  })
