@@ -46,6 +46,7 @@ async function run() {
     const orderCallaction = database.collection("Order");
     const ConfromorderCallaction = database.collection("confrom");
     const reviewCallaction = database.collection("review");
+    const districtCallaction  = database.collection("districtCallaction");
 
 
     const verifyAdmin= async (req,res,next)=>{
@@ -69,6 +70,12 @@ async function run() {
   
      })
 
+
+
+app.get('/district',async(req,res)=>{
+  const result = await districtCallaction.find().toArray()
+  res.send(result)
+})
 
    app.post('/products',verifyJWT,verifyAdmin,async(req,res)=>{
     const product=req.body
@@ -252,6 +259,12 @@ app.get("/status",verifyJWT,verifyAdmin,async(req,res)=>{
    const result= await reviewCallaction.find(query).toArray()
    res.send(result)
   })
+
+  app.get("/allreviews",async(req,res)=>{
+     const result= await reviewCallaction.find().toArray()
+     res.send(result)
+  })
+
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     // Send a ping to confirm a successful connection
