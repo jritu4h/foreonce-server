@@ -264,7 +264,27 @@ app.get("/status",verifyJWT,verifyAdmin,async(req,res)=>{
      const result= await reviewCallaction.find().toArray()
      res.send(result)
   })
+  app.get("/admincontrollreview",async(req,res)=>{
+     const result= await reviewCallaction.find().toArray()
+     res.send(result)
+  })
+  app.get("/admincontrollreview/:id",async(req,res)=>{
+    const id= req.params.id
+    const query={_id: new ObjectId(id)}
+     const result= await reviewCallaction.findOne(query)
+     res.send(result)
+  })
 
+  app.patch('/products/:id',async(req,res)=>{
+    const id= req.params.id;
+    const updateDoc=req.body;
+    const filter = { _id: new ObjectId(id) };
+
+    const result= await products.updateOne(filter,updateDoc)
+
+    res.send(result)
+
+  })
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     // Send a ping to confirm a successful connection
