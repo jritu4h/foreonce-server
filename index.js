@@ -119,7 +119,7 @@ async function run() {
 
 
 
-    // admin
+    // ad
 
     app.get('/user/admin/:email', verifyJWT, async (req, res) => {
       const email = req.params.email;
